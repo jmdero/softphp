@@ -1,0 +1,13 @@
+<?php
+namespace App\SoftPHP\SPSession;
+/**
+ * Main app class.
+ * @version 0.0.0
+ */
+class SPSession{
+    /**
+    * Starts the session.
+    * @version 0.0.0
+    */
+    public function start(){session_start();}
+}
