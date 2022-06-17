@@ -1,0 +1,16 @@
+<?php
+namespace App\System\Router;
+/**
+ * It manage and control the app routes.
+ * @version 0.0.0
+ */
+class Router{
+    protected array $routes;
+    protected string $routes_path;
+    public function __construct(){
+       $this->getRoutes(); 
+    }
+    protected function getRoutes(){
+        var_dump(CONFIG_PATH.'\routes.json');
+    }
+}

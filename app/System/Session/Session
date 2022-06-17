@@ -1,10 +1,10 @@
 <?php
-namespace App\SoftPHP\SPSession;
+namespace App\System\Session;
 /**
  * Main app class.
  * @version 0.0.0
  */
-class SPSession{
+class Session{
     /**
     * Starts the session.
     * @version 0.0.0
