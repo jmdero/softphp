@@ -1,2 +1,2 @@
 # SoftPHP 
-A basic PHP Framework structure for developers.
+A basic PHP Framework structure for my develops.
