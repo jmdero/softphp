@@ -1,0 +1,24 @@
+<?php
+namespace App\Classes\Router;
+require_once APP_PATH.'\classes\Router\interfaces\Router';
+use App\Classes\Router\Interfaces\Router\Router as AppRouter;
+/**
+ * It manage and control the app routes.
+ * @version 0.0.0
+ */
+class Router implements AppRouter{
+    protected object $routes;
+    protected string $routes_path=CONFIG_PATH.'\routes.json';
+    public function __construct(){
+       $this->routes=$this->getRoutes();
+    }
+    public function getRoutes():object{
+        try{
+            $routes=json_decode(file_get_contents($this->routes_path));
+        }
+        catch(Exception $e){
+            $routes=[];
+        }
+        return $routes;
+    }
+}

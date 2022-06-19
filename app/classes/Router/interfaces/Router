@@ -1,0 +1,5 @@
+<?php
+namespace App\Classes\Router\Interfaces\Router;
+interface Router{
+   public function getRoutes():object; 
+}

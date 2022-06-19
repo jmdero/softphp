@@ -1,0 +1,15 @@
+<?php
+namespace App\Classes\Session;
+require_once APP_PATH.'\classes\Session\abstracts\Session';
+use App\Classes\Session\Abstracts\Session\Sessions as Sessions;
+/**
+ * Main app class.
+ * @version 0.0.0
+ */
+class Session extends Sessions{
+    /**
+    * Starts the session.
+    * @version 0.0.0
+    */
+    public function start(){session_start();}
+}
