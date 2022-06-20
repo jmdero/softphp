@@ -1,0 +1,17 @@
+<?php
+namespace App\Classes\Router\Routes\Route;
+require_once APP_PATH.'\classes\Router\abstracts\Route';
+use App\Classes\Router\Abstracts\Route\Route as AbstractRoute;
+class Route extends AbstractRoute{
+    private string $execute;
+    public function __construct(){}
+    public function setInputs(array $properties){
+        if(!empty($properties)){
+            foreach($properties as $name=>$value){
+                $method_name='set'.ucfirst($name);
+                (method_exists($this,$method_name))?$this->$method_name($value):'';
+            }
+        }
+    }
+    protected function setExec(string $controller){$this->execute=$controller;}
+} 

@@ -1,0 +1,4 @@
+<?php
+namespace App\Classes\Router\Interfaces\Routes\PrivateRoute;
+interface PrivateRoute{
+}

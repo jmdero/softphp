@@ -1,24 +1,61 @@
 <?php
-namespace App\Classes\Router;
-require_once APP_PATH.'\classes\Router\interfaces\Router';
-use App\Classes\Router\Interfaces\Router\Router as AppRouter;
+namespace App\Classes\Router\Router;
+require_once APP_PATH.'\classes\Router\abstracts\Router';
+require_once APP_PATH.'\classes\Router\Routes\PrivateRoute';
+require_once APP_PATH.'\classes\Router\Routes\PublicRoute';
+use App\Classes\Router\Abstracts\Router\Router as AbstractRouter;
+use App\Classes\Router\Routes\PrivateRoute\PrivateRoute as PrivateRoute;
+use App\Classes\Router\Routes\PublicRoute\PublicRoute as PublicRoute;
+use Exception;
 /**
  * It manage and control the app routes.
  * @version 0.0.0
  */
-class Router implements AppRouter{
-    protected object $routes;
-    protected string $routes_path=CONFIG_PATH.'\routes.json';
-    public function __construct(){
+class Router extends AbstractRouter{
+    private array $routes;
+    private string $routes_path=CONFIG_PATH.'\routes.json';
+    private string $uri;
+    public function __construct(string $uri=''){
        $this->routes=$this->getRoutes();
+       $this->uri=($uri==='')?$_SERVER['REQUEST_URI']:$uri;
     }
-    public function getRoutes():object{
-        try{
-            $routes=json_decode(file_get_contents($this->routes_path));
+    protected function getJSONRoutes(object $type_routes=null):object{
+        if(is_null($type_routes)){
+            if(!file_exists($this->routes_path)){
+                 throw new Exception($this->routes_path."\n routes file not found.");
+            }
+            try{
+                $type_routes=json_decode(file_get_contents($this->routes_path));
+            }
+            catch(Exception $e){
+                echo $e->getMessage();
+            }
         }
-        catch(Exception $e){
-            $routes=[];
+        return $type_routes;
+    }
+    protected function getRoutes():array{
+        $type_routes=$this->getJSONRoutes();
+        if(!property_exists($type_routes,'private') or !property_exists($type_routes,'public')){
+            throw new Exception("Routes need properties private and public.");
         }
-        return $routes;
+        return $this->setClassRoutesList($type_routes);
+    }
+    protected function setClassRoutesList(object $type_routes):array{
+       $routes=[]; 
+       $private_route_model=new PrivateRoute();
+       $public_route_model=new PublicRoute();
+       foreach($type_routes as $type=>$routes_list){
+          if(!empty(get_object_vars($routes_list))){
+             foreach($routes_list as $uri=>$values){
+                $new_route=($type==='private')?clone $private_route_model:clone $public_route_model;
+                $new_route->setInputs(['type'=>$type,'exec'=>$values->exec]);
+                array_push($routes,$new_route);
+             }
+          }
+       }
+       return $routes; 
+    }
+    public function startURL(){
+
     }
 }

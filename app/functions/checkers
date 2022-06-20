@@ -1,0 +1,11 @@
+<?php
+function checkArrayOf(array $list,string $class):bool{
+    $response=(!empty($list))?true:false;
+    foreach($list as $object){
+        if(!is_object($object) and get_class($object)!==$class){
+            $response=false;
+            break;
+        }
+    }
+    return $response; 
+}

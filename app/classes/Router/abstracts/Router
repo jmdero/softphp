@@ -1,0 +1,8 @@
+<?php
+namespace App\Classes\Router\Abstracts\Router;
+abstract class Router{
+    abstract protected function getJSONRoutes(object $routes=null):object; 
+    abstract protected function getRoutes():array; 
+    abstract protected function setClassRoutesList(object $routes_list):array; 
+    abstract public function startURL();
+}
