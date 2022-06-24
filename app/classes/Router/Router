@@ -1,8 +1,8 @@
 <?php
 namespace App\Classes\Router\Router;
-require_once APP_PATH.'\classes\Router\abstracts\Router';
-require_once APP_PATH.'\classes\Router\Routes\PrivateRoute';
-require_once APP_PATH.'\classes\Router\Routes\PublicRoute';
+require_once 'app\classes\Router\abstracts\Router';
+require_once 'app\classes\Router\Routes\PrivateRoute';
+require_once 'app\classes\Router\Routes\PublicRoute';
 use App\Classes\Router\Abstracts\Router\Router as AbstractRouter;
 use App\Classes\Router\Routes\PrivateRoute\PrivateRoute as PrivateRoute;
 use App\Classes\Router\Routes\PublicRoute\PublicRoute as PublicRoute;
@@ -13,7 +13,7 @@ use Exception;
  */
 class Router extends AbstractRouter{
     private array $routes;
-    private string $routes_path=CONFIG_PATH.'\routes.json';
+    private string $routes_path='app\config\routes.json';
     private string $uri;
     public function __construct(string $uri=''){
        $this->routes=$this->getRoutes();
@@ -56,6 +56,6 @@ class Router extends AbstractRouter{
        return $routes; 
     }
     public function startURL(){
-
+        var_dump($this->routes);
     }
 }

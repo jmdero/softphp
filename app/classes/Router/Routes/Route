@@ -1,6 +1,6 @@
 <?php
 namespace App\Classes\Router\Routes\Route;
-require_once APP_PATH.'\classes\Router\abstracts\Route';
+require_once 'app\classes\Router\abstracts\Route';
 use App\Classes\Router\Abstracts\Route\Route as AbstractRoute;
 class Route extends AbstractRoute{
     private string $execute;
