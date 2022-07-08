@@ -32,7 +32,7 @@ class Router extends AbsRouter{
         return $routes_types;
     }
     protected function getRouteAndParameters(string $uri):array{
-         if($uri===''){throw new ErrorException('Empty uri passed.');}
+         if($uri===''){throw new Exception('Empty uri passed.');}
          $uri_explode=explode('?',$uri);
          $parameters=(array_key_exists(1,$uri_explode))?$this->setParametersFromUriString($uri_explode[1]):[];
          return array_merge(['route'=>trim($uri_explode[0],'/')],compact('parameters')); 
@@ -73,7 +73,7 @@ class Router extends AbsRouter{
         $this->routes_finded=true;
     }
     public function setRoutesPath(string $routes_path){
-       if(!file_exists($routes_path)){throw new ErrorException("'".$routes_path."' file not found.");}
+       if(!file_exists($routes_path)){throw new Exception("'".$routes_path."' file not found.");}
        $this->routes_path=$routes_path; 
     } 
     protected function setUri(string $uri=''){$this->uri=($uri==='')?$_SERVER['REQUEST_URI']:$uri;}
