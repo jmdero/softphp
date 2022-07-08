@@ -1,9 +1,0 @@
-<?php
-namespace App\Classes\Router\Routes\PrivateRoute;
-require_once 'app\classes\Router\Routes\Route';
-require_once 'app\classes\Router\interfaces\Routes\PrivateRoute';
-use App\Classes\Router\Routes\Route\Route as Route;
-use App\Classes\Router\Interfaces\Routes\PrivateRoute\PrivateRoute as InterfaceRoute;
-class PrivateRoute extends Route implements InterfaceRoute{
-    private string $type='private';
-} 

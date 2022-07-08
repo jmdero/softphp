@@ -1,9 +1,0 @@
-<?php
-namespace App\Classes\Router\Routes\PublicRoute;
-require_once 'app\classes\Router\Routes\Route';
-require_once 'app\classes\Router\interfaces\Routes\PublicRoute';
-use App\Classes\Router\Routes\Route\Route as Route;
-use App\Classes\Router\Interfaces\Routes\PublicRoute\PublicRoute as InterfaceRoute;
-class PublicRoute extends Route implements InterfaceRoute{
-    private string $type='public';
-} 

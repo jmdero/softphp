@@ -1,6 +1,0 @@
-<?php
-namespace App\Classes\Router\Abstracts\Route;
-abstract class Route{
-    abstract public function setInputs(array $properties);
-    abstract protected function setExec(string $controller);
-}

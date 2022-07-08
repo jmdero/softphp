@@ -1,4 +1,0 @@
-<?php
-namespace App\Classes\Session\Abstracts\Session;
-abstract class Sessions{
-}
