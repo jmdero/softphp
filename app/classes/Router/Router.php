@@ -83,15 +83,5 @@ class Router extends AbsRouter{
       $position=array_search($this->uri,$routes_list);
       if($position===false){throw new Exception('404 Not Found');}
       return $this->routes_objects[$position]->execute;
-      //$route_and_parameters=$this->getRouteAndParameters($this->uri);
-      //La uri sin parámetros se divide por '/'. 
-      //Se borra que el primen valor sea ''.
-      //Repasamos todas las rutas.
-        //La cantidad de '/' debe coincidir con la de las rutas.
-        //Al coincidir se d
-        //Devuelve el executable
-      //Se separa el executable por '::'.  
-      //Se unen los parámetros en la REQUEST.
-      //Se executa el executable.
     }
 }

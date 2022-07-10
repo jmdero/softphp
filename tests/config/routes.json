@@ -4,6 +4,8 @@
     },
     "public":{
         "/":{"execute":"TestController::mainPage"},
-        "/test_public":{"execute":"TestController::publicPage"}
+        "/test_public":{"execute":"TestController::publicPage"},
+        "/test/public":{"execute":"TestController::publicPage"},
+        "/test/value/{value}":{"execute":"TestController::valuePage"}
     }
 }

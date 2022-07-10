@@ -80,6 +80,8 @@ class RouterTest extends TestCase {
             ['/','TestController::mainPage'],
             ['/test_private','TestController::privatePage'],
             ['/test_public','TestController::publicPage'],
+            ['/test/public','TestController::publicPage'],
+            ['/test/public/150','TestController::publicPage'],
         ];
     }
     /**
@@ -88,5 +90,10 @@ class RouterTest extends TestCase {
     public function testexecuteURL($uri,$expected){
         static::$router->setUri($uri);
         $this->assertSame(static::$router->executeURL(),$expected);
+    }
+    public function testexecuteURLException(){
+        static::$router->setUri('/error');
+        $this->expectException(Exception::class);
+        static::$router->executeURL();
     }
 }
