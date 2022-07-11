@@ -20,6 +20,10 @@ class Router extends AbsRouter{
        $this->setUri($uri);
        $this->setRoutesPath('app\config\routes.json');
     }
+    protected function findUriOnRoutes():int|bool{
+      $routes_list=array_column($this->routes_objects,'route');
+      return array_search($this->uri,$routes_list);
+    }
     protected function getJSONRoutes(object $routes_types=null):object{
         if(is_null($routes_types)){
             try{
@@ -79,8 +83,7 @@ class Router extends AbsRouter{
     protected function setUri(string $uri=''){$this->uri=($uri==='')?$_SERVER['REQUEST_URI']:$uri;}
     public function executeURL(){
       ($this->routes_finded==false)?$this->setRoutes():'';
-      $routes_list=array_column($this->routes_objects,'route');
-      $position=array_search($this->uri,$routes_list);
+      $position=$this->findUriOnRoutes();
       if($position===false){throw new Exception('404 Not Found');}
       return $this->routes_objects[$position]->execute;
     }

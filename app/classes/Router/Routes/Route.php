@@ -4,10 +4,9 @@ require_once 'app\classes\Router\abstracts\AbsRoute.php';
 use App\Classes\Router\Abstracts\AbsRoute\AbsRoute as AbsRoute;
 use Exception;
 class Route extends AbsRoute{
+    public array $data=[];
     public string $route;
     public string $execute;
-    public array $values;
-    public array $values_positions;
     public function __construct(){}
     public function setInputs(array $properties){
         if(!empty($properties)){
@@ -26,11 +25,12 @@ class Route extends AbsRoute{
     }
     protected function setRoute(string $route){
         $this->route=$route;
-        //$this->setValues();
+        $this->setDataFromRoute();
     }
-    protected function setValues(){
-        //if(strpos('{',$this->route)!==false){
-        //    var_dump($this->route);
-        //}
+    protected function setDataFromRoute(){
+        if(is_int(strpos($this->route,'{'))){
+            $data_list=getListFromCutString('{','}',$this->route);
+            array_walk($data_list,fn($data_name)=>$this->data[$data_name]=null);
+        }
     }
 } 

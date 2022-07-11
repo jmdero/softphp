@@ -1,6 +1,7 @@
 <?php
 namespace App\Classes\Router\Abstracts\AbsRouter;
 abstract class AbsRouter{
+    abstract protected function findUriOnRoutes():int|bool;
     abstract protected function getJSONRoutes(object $routes_types=null):object; 
     abstract protected function getRouteAndParameters(string $uri):array;
     abstract public function getRoutes():array; 

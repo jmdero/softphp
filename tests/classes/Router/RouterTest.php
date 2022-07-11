@@ -57,6 +57,7 @@ class RouterTest extends TestCase {
         $this->assertIsArray($routes);
         $this->assertTrue((count($routes)>0));
     }
+    findUriOnRoutes
     public function providergetRouteAndParameters(){
         return [
             ['',''],
@@ -81,7 +82,7 @@ class RouterTest extends TestCase {
             ['/test_private','TestController::privatePage'],
             ['/test_public','TestController::publicPage'],
             ['/test/public','TestController::publicPage'],
-            ['/test/public/150','TestController::publicPage'],
+            ['/test/value/150','TestController::valuePage'],
         ];
     }
     /**

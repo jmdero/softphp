@@ -19,4 +19,18 @@ class RouteTest extends TestCase{
         static::$route->setExecute($execute);
         $this->assertSame($execute,static::$route->execute);
     }
+    public function providersetDataFromRoute(){
+        return [
+            ['/private',[]],
+            ['/test/{id}',['id'=>null]],
+            ['/test/{id}/{name}',['id'=>null,'name'=>null]],
+        ];
+    }
+    /**
+     * @dataProvider providersetDataFromRoute
+     */
+    public function testsetDataFromRoute(string $route,array $expected){
+        static::$route->setRoute($route);
+        $this->assertSame(static::$route->data,$expected);
+    }
 }
