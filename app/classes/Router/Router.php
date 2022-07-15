@@ -28,14 +28,10 @@ class Router extends AbsRouter{
          $position=($this->uri===$route)?$key:$position;
          $explode_route=explode('/',$route);
          if(is_bool($position) and count($explode_route)===count($explode_uri) and is_int(strpos($route,'{'))){
-            $is_same=true;
-            foreach($explode_route as $key_route=>$value_route){
-               if(is_bool(strpos($value_route,'{')) and $value_route!==$explode_uri[$key_route]){
-                  $is_same=false;
-                  break;
-               }
-            }
-            $position=($is_same)?$key:$position;
+            $res=array_map(function($value_route,$value_uri){
+               return (is_bool(strpos($value_route,'{')) and $value_route!==$value_uri);
+            },$explode_route,$explode_uri);
+            $position=(!in_array(true,$res))?$key:$position;
          }
          if(is_int($position)){break;}
       }
