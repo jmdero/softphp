@@ -57,7 +57,26 @@ class RouterTest extends TestCase {
         $this->assertIsArray($routes);
         $this->assertTrue((count($routes)>0));
     }
-    findUriOnRoutes
+    public function providerfindUriOnRoutes(){
+        return [
+            ['/',1],
+            ['/error',false],
+            ['/test/public',3],
+            ['/test/value/150',4],
+            ['/test/name/Joan',5],
+            ['/test/Joan/name',6],
+            ['/test/Joan/150',7],
+            ['/test/id/150/name/Joan',8],
+        ];
+    }
+    /**
+    * @dataProvider providerfindUriOnRoutes
+    */
+    public function testfindUriOnRoutes(string $route,int|bool $expected){
+        static::$router->setUri($route);
+        $this->checkFindRoutes();
+        $this->assertSame(static::$router->findUriOnRoutes(),$expected);
+    }
     public function providergetRouteAndParameters(){
         return [
             ['',''],
@@ -83,6 +102,10 @@ class RouterTest extends TestCase {
             ['/test_public','TestController::publicPage'],
             ['/test/public','TestController::publicPage'],
             ['/test/value/150','TestController::valuePage'],
+            ['/test/name/Joan','TestController::namePage'],
+            ['/test/Joan/name','TestController::namePage'],
+            ['/test/150/Joan','TestController::fullPage'],
+            ['/test/id/150/name/Joan','TestController::fullPage'],
         ];
     }
     /**

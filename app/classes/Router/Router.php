@@ -12,8 +12,8 @@ use Exception;
  * @version 0.0.0
  */
 class Router extends AbsRouter{
-   public bool  $routes_finded=false;
-   private array $routes_objects;
+    public bool  $routes_finded=false;
+    private array $routes_objects;
     protected string $routes_path;
     private string $uri;
     public function __construct(string $uri=''){
@@ -21,8 +21,25 @@ class Router extends AbsRouter{
        $this->setRoutesPath('app\config\routes.json');
     }
     protected function findUriOnRoutes():int|bool{
+      $position=false;
+      $explode_uri=explode('/',$this->uri);
       $routes_list=array_column($this->routes_objects,'route');
-      return array_search($this->uri,$routes_list);
+      foreach($routes_list as $key=>$route){
+         $position=($this->uri===$route)?$key:$position;
+         $explode_route=explode('/',$route);
+         if(is_bool($position) and count($explode_route)===count($explode_uri) and is_int(strpos($route,'{'))){
+            $is_same=true;
+            foreach($explode_route as $key_route=>$value_route){
+               if(is_bool(strpos($value_route,'{')) and $value_route!==$explode_uri[$key_route]){
+                  $is_same=false;
+                  break;
+               }
+            }
+            $position=($is_same)?$key:$position;
+         }
+         if(is_int($position)){break;}
+      }
+      return $position;
     }
     protected function getJSONRoutes(object $routes_types=null):object{
         if(is_null($routes_types)){
