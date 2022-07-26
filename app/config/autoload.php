@@ -1,5 +1,5 @@
 <?php
-$_REQUEST['folders_to_include']=['app/functions/','tests/controllers/','website/controllers/','website/models/'];
+$_REQUEST['folders_to_include']=['app/functions/','tests/controllers/'];
 function getAll(bool $find=true){
 	require_once('vendor/autoload.php');
 	foreach($_REQUEST['folders_to_include'] as $folder){scanFolderRequires($folder,$find);}

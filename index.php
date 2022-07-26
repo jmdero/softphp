@@ -4,7 +4,7 @@
 * @author Joan Muñoz Madero
 * @version 0.0.0
 */ 
-include 'app\config\autoload.php';
+include './app/config/autoload.php';
 require_once 'app\classes\Session\Session.php';
 require_once 'app\functions\TextEdit.php';
 require_once 'app\classes\Router\Router.php';
