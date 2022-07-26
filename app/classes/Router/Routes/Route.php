@@ -1,6 +1,6 @@
 <?php
 namespace App\Classes\Router\Routes\Route;
-require_once 'app\classes\Router\abstracts\AbsRoute.php';
+require_once './app/classes/Router/abstracts/AbsRoute.php';
 use App\Classes\Router\Abstracts\AbsRoute\AbsRoute as AbsRoute;
 use Exception;
 class Route extends AbsRoute{
