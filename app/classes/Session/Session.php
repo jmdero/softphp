@@ -1,6 +1,6 @@
 <?php
 namespace App\Classes\Session;
-require_once 'app\classes\Session\abstracts\AbsSession.php';
+require_once './app/classes/Session/abstracts/AbsSession.php';
 use App\Classes\Session\Abstracts\AbsSession\AbsSessions as AbsSessions;
 /**
  * Main app class.
